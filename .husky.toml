@@ -1,4 +1,7 @@
 version-file = "VERSION"
 
 [hooks]
-pre-commit = ["revive --config=.revive.toml --formatter=stylish"]
+pre-commit = [
+    "revive --config=.revive.toml --formatter=stylish",
+    "husky lint-staged",
+]
