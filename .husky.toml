@@ -1,0 +1,4 @@
+version-file = "VERSION"
+
+[hooks]
+pre-commit = ["revive --config=.revive.toml --formatter=stylish"]

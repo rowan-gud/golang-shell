@@ -1,0 +1,34 @@
+ignoreGeneratedHeader = false
+severity = "warning"
+confidence = 0.8
+errorCode = 0
+warningCode = 0
+
+enableAllRules = true
+
+[rule.function-result-limit]
+Arguments = [2]
+
+[rule.banned-characters]
+Disabled = true
+
+[rule.cognitive-complexity]
+Arguments = [7]
+
+[rule.cyclomatic]
+Arguments = [10]
+
+[rule.max-public-structs]
+Disabled = true
+
+[rule.function-length]
+Disabled = true
+
+[rule.file-header]
+Disabled = true
+
+[rule.line-length-limit]
+Arguments = [100]
+
+[rule.argument-limit]
+Disabled = true

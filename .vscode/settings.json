@@ -1,0 +1,11 @@
+{
+    "go.formatTool": "goimports",
+    "go.inlayHints.compositeLiteralFields": true,
+    "go.inlayHints.compositeLiteralTypes": true,
+    "go.inlayHints.constantValues": true,
+    "go.inlayHints.functionTypeParameters": true,
+    "go.inlayHints.parameterNames": true,
+    "go.inlayHints.rangeVariableTypes": true,
+    "go.lintTool": "revive",
+    "go.toolsManagement.autoUpdate": true,
+}
