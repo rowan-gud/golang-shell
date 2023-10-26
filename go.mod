@@ -1,3 +1,3 @@
-module github.cms.gov/CMS-MAX/golang-shell
+module github.com/rowan-gud/golang-shell
 
 go 1.21.1
