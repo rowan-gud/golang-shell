@@ -1,0 +1,47 @@
+pipeline {
+    agent {
+        docker { image 'golang:1.21-alpine' }
+    }
+
+    stages {
+        stage ('Test') {
+            steps {
+                sh 'go test ./...'
+            }
+        }
+
+        stage ('Build') {
+            when {
+                branch 'main'
+            }
+
+            steps {
+                sh 
+            }
+        }
+
+        stage ('Deploy Tag - Development') {
+            when {
+                tag 'v*-alpha.*'
+            }
+        }
+
+        stage ('Deploy Tag - Test') {
+            when {
+                tag 'v*-beta.*'
+            }
+        }
+
+        stage ('Deploy Tag - Staging') {
+            when {
+                tag 'v*-rc.*'
+            }
+        }
+
+        stage ('Deploy Tag - Production') {
+            when {
+                tag 'v*-alpha.*'
+            }
+        }
+    }
+}
