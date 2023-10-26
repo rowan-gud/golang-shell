@@ -1,34 +1,41 @@
 ignoreGeneratedHeader = false
 severity = "warning"
 confidence = 0.8
-errorCode = 0
+errorCode = 1
 warningCode = 0
 
 enableAllRules = true
 
 [rule.function-result-limit]
-Arguments = [2]
+arguments = [2]
 
 [rule.banned-characters]
-Disabled = true
+disabled = true
 
 [rule.cognitive-complexity]
-Arguments = [7]
+arguments = [7]
 
 [rule.cyclomatic]
-Arguments = [10]
+arguments = [10]
 
 [rule.max-public-structs]
-Disabled = true
+disabled = true
 
 [rule.function-length]
-Disabled = true
+disabled = true
 
 [rule.file-header]
-Disabled = true
+disabled = true
 
 [rule.line-length-limit]
-Arguments = [100]
+arguments = [100]
 
 [rule.argument-limit]
-Disabled = true
+disabled = true
+
+[rule.package-comments]
+severity = "error"
+Exclude = ["internal/**/*.go", "**/*.pb.go", "TEST"]
+
+[directive.specify-disable-reason]
+severity = "error"

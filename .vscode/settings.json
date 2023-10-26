@@ -7,5 +7,9 @@
     "go.inlayHints.parameterNames": true,
     "go.inlayHints.rangeVariableTypes": true,
     "go.lintTool": "revive",
+    "go.lintFlags": [
+        "--config=${workspaceRoot}/.revive.toml"
+    ],
     "go.toolsManagement.autoUpdate": true,
+    "go.lintOnSave": "workspace",
 }
