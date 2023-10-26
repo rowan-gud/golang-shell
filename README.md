@@ -4,6 +4,7 @@
 
 * [Go](https://go.dev/doc/install)
 * [Node.js](https://nodejs.org)
+* [Docker + compose](https://docs.docker.com/desktop/)
 
 ### Go binary dependencies
 
@@ -25,6 +26,11 @@ go install github.com/maykonlf/semver-cli/cmd/semver@latest
 #### [husky](https://github.com/go-courier/husky) - Git hooks
 ```sh
 go install github.com/go-courier/husky/cmd/husky@latest
+```
+
+#### [air](https://github.com/cosmtrek/air) - Live Reloading
+```sh
+go install github.com/cosmtrek/air@latest
 ```
 
 ### Node.js Dependencies

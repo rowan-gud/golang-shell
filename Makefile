@@ -1,5 +1,8 @@
 VERSION_FILE=VERSION
 
+DOCKER_REPO=DOCKER_REPO
+APP_NAME=APP_NAME
+
 .PHONY: major
 major:
 	semver up major > $(VERSION_FILE)
@@ -35,3 +38,15 @@ tag:
 .PHONE: tag-push
 tag-push:
 	git push origin $(shell cat $(VERSION_FILE))
+
+.PHONY: build
+build:
+	docker compose -f deployments/docker-compose.local.yaml build
+
+.PHONY: dev
+dev:
+	docker compose -f deployments/docker-compose.local.yaml up
+
+.PHONY: build-docker
+build-docker:
+	docker build -f build/package/Dockerfile.production -t $(DOCKER_REPO)/$(APP_NAME) .
