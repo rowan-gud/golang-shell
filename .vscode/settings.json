@@ -12,4 +12,116 @@
     ],
     "go.toolsManagement.autoUpdate": true,
     "go.lintOnSave": "workspace",
+    "todo-tree.regex.enableMultiLine": false,
+    "todo-tree.regex.regex": "(//|#|<!--|;|>|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)",
+    "todo-tree.regex.subTagRegex": ":?\\s*([^\\s]*)\\s*->",
+    "todo-tree.tree.labelFormat": "${tag}: ${after}",
+    "todo-tree.general.tags": [
+        "FIX",
+        "FIXIT",
+        "ISSUE",
+        "BUG",
+        "TODO",
+        "HACK",
+        "WARN",
+        "WARNING",
+        "XXX",
+        "PERF",
+        "PERFORMANCE",
+        "OPTIMIZE",
+        "INFO",
+        "NOTE",
+        "TEST",
+        "TESTING",
+        "PASSED",
+        "FAILED",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.general.tagGroups": {
+        "FIX": [
+            "FIX",
+            "FIXIT",
+            "ISSUE",
+            "BUG"
+        ],
+        "TODO": [
+            "TODO",
+            "[ ]"
+        ],
+        "HACK": [
+            "HACK"
+        ],
+        "WARN": [
+            "WARN",
+            "WARNING",
+            "XXX"
+        ],
+        "PERF": [
+            "PERF",
+            "PERFORMANCE",
+            "OPTIMIZE"
+        ],
+        "INFO": [
+            "INFO",
+            "NOTE",
+            "[x]"
+        ],
+        "TEST": [
+            "TEST",
+            "TESTING",
+            "PASSED",
+            "FAILED"
+        ],
+    },
+    "todo-tree.highlights.defaultHighlight": {
+        "type": "tag-and-subTag",
+        "fontWeight": "bold",
+        "foreground": "#303446",
+        "opacity": 90
+    },
+    "todo-tree.highlights.customHighlight": {
+        "FIX": {
+            "background": "#e78284",
+            "iconColour": "#e78284",
+            "icon": "bug",
+            "gutterIcon": true
+        },
+        "TODO": {
+            "background": "#8caaef",
+            "iconColour": "#8caaef",
+            "icon": "tasklist",
+            "gutterIcon": true
+        },
+        "HACK": {
+            "background": "#e5c991",
+            "iconColour": "#e5c991",
+            "icon": "alert",
+            "gutterIcon": true
+        },
+        "WARN": {
+            "background": "#e5c991",
+            "iconColour": "#e5c991",
+            "icon": "alert",
+            "gutterIcon": true
+        },
+        "PERF": {
+            "background": "#7387fe",
+            "iconColour": "#7387fe",
+            "icon": "star",
+            "gutterIcon": true
+        },
+        "INFO": {
+            "background": "#a6d18a",
+            "iconColour": "#a6d18a",
+            "icon": "info",
+            "gutterIcon": true
+        },
+        "TEST": {
+            "background": "#82c9be",
+            "iconColour": "#82c9be",
+            "icon": "beaker",
+            "gutterIcon": true
+        },
+    },
 }
