@@ -29,7 +29,7 @@ alpha:
 
 .PHONY: changelog
 changelog:
-	conventional-changelog -p conventionalCommits -i CHANGELOG.md -s -r 0
+	conventional-changelog -p conventionalCommits -i CHANGELOG.md -s --skip-unstable -r 0
 
 .PHONY: tag
 tag:
