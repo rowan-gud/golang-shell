@@ -1,46 +1,105 @@
+def docker_repo = 'some-docker-repo'
+def image_name = 'some-image'
+
+def retag_image (src, dest) {
+    sh (
+        label: "Retag Image: ${src} => ${dest}",
+        script: "docker tag ${src} ${dest}"
+    )
+
+    sh (
+        label: "Push Tag ${dest}",
+        script: "docker push ${dest}"
+    )
+}
+
 pipeline {
     agent {
         docker { image 'golang:1.21-alpine' }
     }
 
+    environment {
+        GIT_COMMIT_SHORT = sh(
+            script: "printf \$(git rev-parse --short ${GIT_COMMIT})",
+            returnStdout: true
+        )
+    }
+
     stages {
-        stage ('Test') {
+        stage ('Setup and Install') {
             steps {
-                sh 'go test ./...'
+                script {
+                    sh 'go mod download'
+                }
             }
         }
 
-        stage ('Build') {
+        stage ('Test') {
+            steps {
+                script {
+                    sh 'go test ./...'
+                }
+            }
+        }
+
+        stage ('Build Commit Image') {
+            steps {
+                script {
+                    commit_image_tag = "${docker_repo}/${image_name}:${env.GIT_COMMIT_SHORT}"
+
+                    failed_to_find_tag = sh(
+                        label: 'Check if Commit Image Exists'
+                        script: "docker manifest inspect ${commit_image_tag}",
+                        returnStatus: true
+                    )
+
+                    if failed_to_find_tag != 0 {
+                        sh (
+                            label: 'Build Docker Image',
+                            script: "docker build -f build/package/Dockerfile.production . -t ${commit_image_tag}"
+                        )
+
+                        sh (
+                            label: 'Push Docker Image',
+                            script: "docker push ${commit_image_tag}"
+                        )
+                    } else {
+                        sh (
+                            label: 'Pull Existing Image',
+                            script: "docker pull ${commit_image_tag}"
+                        )
+                    }
+                }
+            }
+        }
+
+        stage ('Tag Latest') {
             when {
                 branch 'main'
             }
 
             steps {
-                sh 
+                script {
+                    commit_image_tag = "${docker_repo}/${image_name}:${env.GIT_COMMIT_SHORT}"
+                    latest_image_tag = "${docker_repo}/${image_name}:latest"
+
+                    retag_image(commit_image_tag, latest_image_tag)
+                }
             }
         }
 
-        stage ('Deploy Tag - Development') {
+        stage ('Tag Release') {
             when {
-                tag 'v*-alpha.*'
+                tag 'v*'
             }
-        }
 
-        stage ('Deploy Tag - Test') {
-            when {
-                tag 'v*-beta.*'
-            }
-        }
-
-        stage ('Deploy Tag - Staging') {
-            when {
-                tag 'v*-rc.*'
-            }
-        }
-
-        stage ('Deploy Tag - Production') {
-            when {
-                tag 'v*-alpha.*'
+            steps {
+                script {
+                    commit_image_tag = "${docker_repo}/${image_name}:${env.GIT_COMMIT_SHORT}"
+                    release_image_tag = "${docker_repo}/${image_name}:${env.TAG_NAME}"
+                    
+                    retag_image(commit_image_tag, release_image_tag)
+                }
             }
         }
     }

@@ -3,6 +3,20 @@ VERSION_FILE=VERSION
 DOCKER_REPO=DOCKER_REPO
 APP_NAME=APP_NAME
 
+VIEWER=""
+
+ifeq ($(OS), Windows_NT)
+	VIEWER=start
+else
+	UNAME := $(shell uname -s)
+
+	ifeq ($(UNAME), Darwin)
+		VIEWER=open
+	else
+		VIEWER=xdg-open
+	endif
+endif
+
 .PHONY: major
 major:
 	semver up major > $(VERSION_FILE)
@@ -50,3 +64,9 @@ dev:
 .PHONY: build-docker
 build-docker:
 	docker build -f build/package/Dockerfile.production -t $(DOCKER_REPO)/$(APP_NAME) .
+
+.PHONY: test
+test:
+	go test -cover -coverprofile=coverage.out ./...
+	go tool cover -html=coverage.out -o coverage.html
+	$(VIEWER) coverage.html

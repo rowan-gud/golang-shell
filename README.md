@@ -70,8 +70,7 @@ npm install -g conventional-changelog-cli
 
 * feat - A new feature
 * fix - A bug fix
-* chore - A change which does not effect the functionality of the application (eg: updating dependencies)
-* release - A commit which updates tags, changelogs, versions, etc.
+* chore - A change which does not effect the functionality of the application (eg: updating dependencies, releases)
 * ci - An update to ci files
 * docs - An update to documentation
 * perf - A performance improvement
