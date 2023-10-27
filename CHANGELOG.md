@@ -1,4 +1,11 @@
-## [](https://github.com/rowan-gud/golang-shell/compare/v1.0.0...v) (2023-10-26)
+## [](https://github.com/rowan-gud/golang-shell/compare/v1.0.1...v) (2023-10-27)
+
+## [1.0.1](https://github.com/rowan-gud/golang-shell/compare/v1.0.0...v1.0.1) (2023-10-27)
+
+
+### Bug Fixes
+
+* update makefile to correctly perform patch updates ([#2](https://github.com/rowan-gud/golang-shell/issues/2)) ([bae2ab8](https://github.com/rowan-gud/golang-shell/commit/bae2ab8afa270b230acca8181af396b656f3f65c)), closes [#1235](https://github.com/rowan-gud/golang-shell/issues/1235)
 
 ## [1.0.0](https://github.com/rowan-gud/golang-shell/compare/v0.2.0...v1.0.0) (2023-10-26)
 
