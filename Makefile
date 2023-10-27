@@ -13,7 +13,7 @@ minor:
 
 .PHONY: patch
 patch:
-	semver up patch > $(VERSION_FILE)
+	semver up release > $(VERSION_FILE)
 
 .PHONY: rc
 rc:
